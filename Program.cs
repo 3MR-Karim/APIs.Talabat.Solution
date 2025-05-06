@@ -34,7 +34,7 @@ namespace Talabat.Solution
             try
             {
             await _dbContext.Database.MigrateAsync();  // update db becuse mifate everseconeed contintu if run app found migration not apply DLR DO Apply
-                // and use because data Seeding and if deploy API and cant open PMA for applymigraotn becuase in server  i talk becuase work 
+                await StoreContextSeed.SeedAsync(_dbContext);// and use because data Seeding and if deploy API and cant open PMA for applymigraotn becuase in server  i talk becuase work 
 
             }
             catch (Exception ex)
