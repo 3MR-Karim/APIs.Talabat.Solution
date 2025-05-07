@@ -9,7 +9,7 @@ namespace Talabat.Solution.Controllers
     [ApiController]
     public class ProductsController : BaseApiControlller
     {
-        private readonly IGenericRepository<Product> productRepo;
+        private readonly IGenericRepository<Product> _productRepo;
 
         // between apicontroller VS common conteroer
         // base consiat base every api contorller
@@ -18,7 +18,20 @@ namespace Talabat.Solution.Controllers
 
         public ProductsController( IGenericRepository<Product> productRepo)
         {
-            this.productRepo = productRepo;
+            this._productRepo = productRepo;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProducts()
+        {
+
+
+            var products = await _productRepo.GetAllAsync();
+           return Ok(products);
+            
+            ;
+
+
         }
 
 
