@@ -16,7 +16,7 @@ namespace Talabat.Solution.Controllers
         // commom has end endpoint use endpoint common in every controller  
 
 
-        public ProductsController( IGenericRepository<Product> productRepo)
+        public ProductsController(IGenericRepository<Product> productRepo)
         {
             this._productRepo = productRepo;
         }
@@ -27,24 +27,39 @@ namespace Talabat.Solution.Controllers
 
 
             var products = await _productRepo.GetAllAsync();
-           return Ok(products);
-            
+            return Ok(products);
+
             ;
 
 
         }
 
 
+        [HttpGet("{id}")]
+
+        public async Task<ActionResult<Product>> GetProduct(int id) {
+
+            var product = await _productRepo.GetAsync(id);
+
+            if (product is null) 
+
+                return  NotFound(new { Message ="Not FOund",StatusCode =404});
 
 
+            return Ok(product);
 
-
-
-
-
-
-
-
-
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+    
 }
